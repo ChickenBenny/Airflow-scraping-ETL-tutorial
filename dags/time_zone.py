@@ -14,10 +14,7 @@ default_args = {
 
 def test(date):
     print(f'UTC time :{date}')
-
-def test_tw_time_zone(date):
     print(f'TW time : {date.astimezone(timezone(timedelta(hours=8)))}')
-
 
 
 with DAG(
@@ -30,9 +27,3 @@ with DAG(
         python_callable = test,
         op_kwargs = {"date": datetime.now()}
     )
-
-    time_zone = PythonOperator(
-        task_id = 'TW_time_zone_testing',
-        python_callable = test_tw_time_zone,
-        op_kwargs = {"date": datetime.now()}
-    ) 
