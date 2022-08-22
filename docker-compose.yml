@@ -64,3 +64,14 @@ services:
         mkdir -p /sources/logs /sources/dags /sources/plugins
         chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}
         exec /entrypoint airflow version
+
+  database:
+    image: postgres:13
+    container_name: database
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes: 
+      - ./database/pg:/var/lib/postgresql
+      - ./database/sql/create_table.sql:/docker-entrypoint-initdb.d/create_tables.sql
