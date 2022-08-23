@@ -5,7 +5,7 @@ from airflow.operators.python_operator import PythonOperator
 
 default_args = {
     'owner': 'Benny Hsiao',
-    'start_date': datetime(2022, 8, 15),
+    'start_date': datetime(2022, 8, 15, 10, 0),
     'schedule_interval': '@daily',
     'retries': 2,
     'retry_delay': timedelta(minutes = 5)
@@ -24,6 +24,9 @@ def fn_scrapy():
     else:
         print('今日為開盤')
 
+def test(date):
+    print(date)
+
 
 with DAG(
     dag_id = 'information_scrapy_app',
@@ -32,5 +35,6 @@ with DAG(
 ) as dag:
     scrapy_task = PythonOperator(
         task_id = 'scrapy_task',
-        python_callable = fn_scrapy
+        python_callable = test,
+        op_kwargs = {"date": datetime.now()}
     )
