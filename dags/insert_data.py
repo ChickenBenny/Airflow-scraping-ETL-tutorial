@@ -50,20 +50,6 @@ def scrapy(ti):
         print('無交易資料')
 
 
-
-def insert_data(ti):
-    date = ti.xcom_pull(task_ids = 'scrapy_task', key = 'date')
-    data = ti.xcom_pull(task_ids = 'scrapy_task', key = 'data')
-    hook = PostgresHook.get_hook(POSTGRES_CONN_ID)
-    conn = hook.get_conn()
-    cursor = conn.cursor()
-    query = f'''INSERT INTO investment_data(dt, dealer_buy, dealer_sell, dealer_dif, dealer_buy_hedge, dealer_sell_hedge, dealer_dif_hedge, investment_buy, investment_sell, investment_dif, foreign_buy, foreign_sell, foreign_dif) VALUES('{date}', '{data[0]}', '{data[1]}', '{data[2]}', '{data[3]}', '{data[4]}', '{data[5]}', '{data[6]}', '{data[7]}', '{data[8]}', '{data[9]}', '{data[10]}', '{data[11]}');'''
-    print(query)
-    cursor.execute(query)
-    cursor.close()
-    conn.close()
-
-
 def read_db():
     hook = PostgresHook.get_hook(POSTGRES_CONN_ID)
     conn = hook.get_conn()
