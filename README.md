@@ -1,5 +1,17 @@
 # Airflow 與爬蟲菜雞的修行之旅
 這是我使用Airflow + Python爬蟲自動化爬取三大法人交易資訊的開發筆記，撰寫方式是參考蜘蛛人大大李孟的文章。還沒看過的朋友可以先去看看，蜘蛛人的大大的文章都是值得一看再看([傳送門](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html))。
+### Quick start
+1. Clone the repositroy
+```
+$ git clone https://github.com/ChickenBenny/Airflow-scrapying-ETL-tutorial
+$ cd Airflow-scrapying-ETL-tutorial
+```
+2. 用`docker-compose up`搭建app
+```
+$ docker-compose up
+```
+3. 到Web UI的connection進行database和telegram token的連接
+4. 到DAG打開Final_app，即可以開始運行
 ### 一同修行將獲得
 * 撰寫簡易 ETL 的能力
 * 了解如何使用Airflow進階的Operator(Branch、Postgres、Telegram)
