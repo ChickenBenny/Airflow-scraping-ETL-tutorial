@@ -1,1 +1,2 @@
 apache-airflow-providers-telegram==3.0.0
+python-telegram-bot==13.15
